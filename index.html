@@ -41,6 +41,7 @@
 
   <h2>🌱 Welcome to RenewBot – Your Energy Guide!</h2>
 
+  <!-- ✅ Dialogflow Messenger -->
   <df-messenger
     intent="WELCOME"
     chat-title="RenewBot"
@@ -49,31 +50,6 @@
   </df-messenger>
 
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
-  <!-- ✅ OPTIONAL: Center chat window after it's opened -->
-  <script>
-    window.addEventListener('dfMessengerLoaded', () => {
-      const dfMessenger = document.querySelector('df-messenger');
-      const shadowRoot = dfMessenger.shadowRoot;
-      const chatEl = shadowRoot.querySelector('df-messenger-chat');
-      const innerRoot = chatEl.shadowRoot;
-
-      const observer = new MutationObserver(() => {
-        const wrapper = innerRoot.querySelector('.chat-wrapper');
-        if (wrapper) {
-          wrapper.style.position = 'fixed';
-          wrapper.style.top = '50%';
-          wrapper.style.left = '50%';
-          wrapper.style.transform = 'translate(-50%, -50%)';
-          wrapper.style.zIndex = '9999';
-          wrapper.style.height = '80vh';
-          wrapper.style.width = '400px';
-        }
-      });
-
-      observer.observe(innerRoot, { childList: true, subtree: true });
-    });
-  </script>
 
 </body>
 </html>
