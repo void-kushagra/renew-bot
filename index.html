@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RenewBot - Your Green Energy Assistant</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f5e9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    df-messenger {
+      --df-messenger-button-titlebar-color: #2e7d32;
+      --df-messenger-chat-background-color: #ffffff;
+      --df-messenger-bot-message: #f1f8e9;
+      --df-messenger-user-message: #a5d6a7;
+    }
+
+
+  
+/* Keeps the button at bottom-right */
+
+
+
+  </style>
+</head>
+<body>
+
+  <h2>🌱 Welcome to RenewBot – Your Energy Guide!</h2>
+
+<df-messenger
+  chat-title="RenewBot"
+  agent-id="1707b9c6-5192-44ea-9941-b962e67110fe"
+  language-code="en">
+</df-messenger>
+
+
+
+
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const tryCenterChat = () => {
+      const dfMessenger = document.querySelector('df-messenger');
+      const shadowRoot = dfMessenger.shadowRoot;
+
+      if (!shadowRoot) {
+        setTimeout(tryCenterChat, 200);
+        return;
+      }
+
+      const chatWindow = shadowRoot.querySelector('df-messenger-chat');
+
+      if (chatWindow) {
+        const innerShadow = chatWindow.shadowRoot;
+
+        if (!innerShadow) {
+          setTimeout(tryCenterChat, 200);
+          return;
+        }
+
+        const container = innerShadow.querySelector('.chat-wrapper');
+
+        if (container) {
+          container.style.position = 'fixed';
+          container.style.top = '50%';
+          container.style.left = '50%';
+          container.style.transform = 'translate(-50%, -50%)';
+          container.style.zIndex = '9999';
+          container.style.height = '80vh';
+          container.style.width = '400px';
+        }
+      }
+    };
+
+    tryCenterChat();
+  });
+</script>
+
+</body>
+</html>
+
+
+
