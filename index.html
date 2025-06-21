@@ -3,6 +3,17 @@
 <head>
   <title>RenewBot - Your Green Energy Assistant</title>
   <meta charset="UTF-8">
+
+  <!-- ✅ Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7LN92MKW6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L7LN92MKW6');
+  </script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -25,70 +36,47 @@
       --df-messenger-bot-message: #f1f8e9;
       --df-messenger-user-message: #a5d6a7;
     }
-
-
-  
-/* Keeps the button at bottom-right */
-
-
-
   </style>
 </head>
 <body>
 
   <h2>🌱 Welcome to RenewBot – Your Energy Guide!</h2>
 
-<df-messenger
-  chat-title="RenewBot"
-  agent-id="1707b9c6-5192-44ea-9941-b962e67110fe"
-  language-code="en">
-</df-messenger>
-
-
-
+  <df-messenger
+    chat-title="RenewBot"
+    agent-id="7fdb336a-a190-4230-a350-d120aed20637"
+    language-code="en">
+  </df-messenger>
 
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+  <!-- ✅ Center the chat window on open -->
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const tryCenterChat = () => {
-      const dfMessenger = document.querySelector('df-messenger');
-      const shadowRoot = dfMessenger.shadowRoot;
+    window.addEventListener('DOMContentLoaded', () => {
+      const tryCenterChat = () => {
+        const dfMessenger = document.querySelector('df-messenger');
+        const shadowRoot = dfMessenger?.shadowRoot;
+        if (!shadowRoot) return setTimeout(tryCenterChat, 200);
 
-      if (!shadowRoot) {
-        setTimeout(tryCenterChat, 200);
-        return;
-      }
+        const chatEl = shadowRoot.querySelector('df-messenger-chat');
+        const innerShadow = chatEl?.shadowRoot;
+        if (!innerShadow) return setTimeout(tryCenterChat, 200);
 
-      const chatWindow = shadowRoot.querySelector('df-messenger-chat');
+        const chatWrapper = innerShadow.querySelector('.chat-wrapper');
+        if (!chatWrapper) return;
 
-      if (chatWindow) {
-        const innerShadow = chatWindow.shadowRoot;
+        chatWrapper.style.position = 'fixed';
+        chatWrapper.style.top = '50%';
+        chatWrapper.style.left = '50%';
+        chatWrapper.style.transform = 'translate(-50%, -50%)';
+        chatWrapper.style.zIndex = '9999';
+        chatWrapper.style.height = '80vh';
+        chatWrapper.style.width = '400px';
+      };
 
-        if (!innerShadow) {
-          setTimeout(tryCenterChat, 200);
-          return;
-        }
-
-        const container = innerShadow.querySelector('.chat-wrapper');
-
-        if (container) {
-          container.style.position = 'fixed';
-          container.style.top = '50%';
-          container.style.left = '50%';
-          container.style.transform = 'translate(-50%, -50%)';
-          container.style.zIndex = '9999';
-          container.style.height = '80vh';
-          container.style.width = '400px';
-        }
-      }
-    };
-
-    tryCenterChat();
-  });
-</script>
+      tryCenterChat();
+    });
+  </script>
 
 </body>
 </html>
-
-
-
